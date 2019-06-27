@@ -3,21 +3,33 @@ package zandbak;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import zandbak.Zip;
 
 public class Zand {
 
 	public static void main(String[] args) {
+		test3();
+	}
+
+	
+	private static void test4() {
+		// >= java 8
+		// compiled with java 8 "java -source 1.6" => can be run with java 8 
+		String[] a = new String[]{"a","b"};
+		System.out.println(String.join("a", a));
+	}
+
+
+	private static void test2() {
 		String str = "asdsad";
 		System.out.println(str.toString());
 
 		System.out.println(str.subSequence(1, str.length()-1));
+	}
 
-		// >= java 8
-		// compiled with java 8 "java -source 1.6" => can be run with java 8 
-//		String[] a = new String[]{"a","b"};
-//		System.out.println(String.join("a", a));
-
-		test1();
+	private static void test3() {
+		Zip.unzip("p:\\workspace\\DetailsPSvoorstel.zip", "");
+		
 	}
 
 	private static void test1() {

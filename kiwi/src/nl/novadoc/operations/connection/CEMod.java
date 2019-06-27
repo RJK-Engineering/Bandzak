@@ -19,15 +19,15 @@ import nl.novadoc.logger.Logger;
  * This object represents the connection with the Content Engine. Once
  * connection is established it intializes Domain and ObjectStoreSet with
  * available Domain and ObjectStoreSet.
- * 
+ *
  */
 public class CEMod {
 	static Logger logger = Logger.getLogger();
 	static String TAG = "CEMod";
-	
+
 	public static String testUserName;
-	public static String testPassword; 
-	public static String testStanza; 
+	public static String testPassword;
+	public static String testStanza;
 	public static String testUri;
 	public static boolean test = false;
 
@@ -74,19 +74,19 @@ public class CEMod {
 	public void establishConnectionTest()
 	{
 		try {
-		    UserContext uc = UserContext.get();
+			UserContext uc = UserContext.get();
 
-		    Connection con = Factory.Connection.getConnection(testUri);
-		    Subject sub = UserContext.createSubject(con,testUserName,testPassword,testStanza);
+			Connection con = Factory.Connection.getConnection(testUri);
+			Subject sub = UserContext.createSubject(con,testUserName,testPassword,testStanza);
 
-		    uc.pushSubject(sub);
-		    
-		    dom = Factory.Domain.fetchInstance(con, null, null);
+			uc.pushSubject(sub);
+
+			dom = Factory.Domain.fetchInstance(con, null, null);
 		} catch (Exception e) {
 			logger.error(TAG, e.getMessage());
 		}
-	}	
-	
+	}
+
 	/*
 	 * Returns Domain object.
 	 */
@@ -117,7 +117,7 @@ public class CEMod {
 		}
 		return localDomain;
 	}
-	
+
 	public Domain getDomain() {
 		return dom;
 	}
@@ -130,7 +130,7 @@ public class CEMod {
 	 * private Domain fetchDomain() throws Exception { try {
 	 * log.debug("fetching Domain"); dom = Factory.Domain.fetchInstance(con, null,
 	 * null); log.debug("Domain: " + dom.get_Name());
-	 * 
+	 *
 	 * return dom; } catch (Exception e) { log.error("could not fetch Domain");
 	 * log.error(e.getMessage()); throw e; } }
 	 */
@@ -153,13 +153,12 @@ public class CEMod {
 			throw e;
 		}
 	}
-	
+
 	public String toString() {
 		return testUserName + "; " + testStanza + "; " + testUri;
 	}
 
 	public ObjectStore getObjectStore(String osName) {
-		logger.error(TAG, "Could not retrieve Objectstore");
 		try {
 			return fetchOS(osName);
 		} catch (Exception e) {
