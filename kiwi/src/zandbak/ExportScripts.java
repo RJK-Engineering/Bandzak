@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 import com.filenet.api.collection.DocumentSet;
 import com.filenet.api.collection.FolderSet;
 import com.filenet.api.core.Document;
@@ -16,31 +18,31 @@ import com.filenet.api.core.Factory;
 import com.filenet.api.core.Folder;
 import com.filenet.api.core.ObjectStore;
 
-import nl.novadoc.logger.Logger;
 import nl.novadoc.operations.connection.CEMod;
+import zandbak.util.Log;
 
 @SuppressWarnings("rawtypes")
 public class ExportScripts {
 
-//	private static final String TAG = "ExportScripts";
 	private static String objectStore = "DOS";
 	private static String ceModPropertyFile = "ExportScripts.properties";
 	private static String solutionsPath = "/IBM Case Manager/Solutions";
 	private static String pageFolder = "Pages";
 	private static CEMod ceMod;
 	private static ObjectStore os;
-//	private static Logger logger;
 	private static String solutionDefinitionDocumentName = "Solution Definition";
 	private static String outputDir;
 
 	public static void main(String[] args) throws IOException {
 		outputDir = args.length > 0 ? args[0] : ".";
 		Properties properties = getProperties();
-//		logger = Logger.getLogger(properties);
-		Logger.getLogger(properties);
+		
+		Log.setLog(properties);
+		Logger logger = Log.getLogger(ExportScripts.class);
+		logger.debug("SD");
 
-		setupCEConnection(properties);
-		processSolutions(properties);
+//		setupCEConnection(properties);
+//		processSolutions(properties);
 	}
 
 	private static void processSolutions(Properties properties) throws IOException {

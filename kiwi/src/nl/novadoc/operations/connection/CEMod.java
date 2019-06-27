@@ -4,6 +4,8 @@ import java.security.AccessController;
 
 import javax.security.auth.Subject;
 
+import org.apache.log4j.Logger;
+
 import com.filenet.api.core.Connection;
 import com.filenet.api.core.Domain;
 import com.filenet.api.core.EntireNetwork;
@@ -13,7 +15,6 @@ import com.filenet.api.util.UserContext;
 
 import filenet.vw.integrator.CMUserContext;
 import filenet.vw.server.Configuration;
-import nl.novadoc.logger.Logger;
 
 /**
  * This object represents the connection with the Content Engine. Once
@@ -22,7 +23,7 @@ import nl.novadoc.logger.Logger;
  *
  */
 public class CEMod {
-	static Logger logger = Logger.getLogger();
+	static Logger logger = Logger.getLogger(CEMod.class);
 	static String TAG = "CEMod";
 
 	public static String testUserName;
@@ -43,7 +44,7 @@ public class CEMod {
 			else
 				establishConnection();
 		} catch (Exception e) {
-			logger.error(TAG, "Could not establish connection Content Engine!", e);
+			logger.error("Could not establish connection Content Engine!", e);
 		}
 	}
 
@@ -61,7 +62,7 @@ public class CEMod {
 			dom = fetchDomain();
 			// ost = getOSSet();
 		} catch (Exception e) {
-			logger.error(TAG, e.getMessage());
+			logger.error(e.getMessage());
 			throw e;
 		}
 	}
@@ -83,7 +84,7 @@ public class CEMod {
 
 			dom = Factory.Domain.fetchInstance(con, null, null);
 		} catch (Exception e) {
-			logger.error(TAG, e.getMessage());
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -142,14 +143,14 @@ public class CEMod {
 		ObjectStore os = null;
 
 		try {
-			logger.debug(TAG, "fetching ObjectStore");
+			logger.debug("fetching ObjectStore");
 			os = Factory.ObjectStore.fetchInstance(dom, name, null);
-			logger.debug(TAG, "ObjectStore: " + os.get_DisplayName());
+			logger.debug("ObjectStore: " + os.get_DisplayName());
 
 			return os;
 		} catch (Exception e) {
-			logger.error(TAG, "could not return ObjectStore");
-			logger.error(TAG, e.getMessage());
+			logger.error("could not return ObjectStore");
+			logger.error(e.getMessage());
 			throw e;
 		}
 	}
@@ -162,7 +163,7 @@ public class CEMod {
 		try {
 			return fetchOS(osName);
 		} catch (Exception e) {
-			logger.error(TAG, "Could not retrieve Objectstore", e);
+			logger.error("Could not retrieve Objectstore", e);
 		}
 		return null;
 	}
