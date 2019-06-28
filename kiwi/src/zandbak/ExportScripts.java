@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.zip.ZipInputStream;
 
 import org.apache.log4j.Logger;
 
@@ -19,7 +20,9 @@ import com.filenet.api.core.Folder;
 import com.filenet.api.core.ObjectStore;
 
 import nl.novadoc.operations.connection.CEMod;
+import zandbak.util.ZipEntryVisitor;
 import zandbak.util.Log;
+import zandbak.util.Zip;
 
 @SuppressWarnings("rawtypes")
 public class ExportScripts {
@@ -37,9 +40,12 @@ public class ExportScripts {
 		outputDir = args.length > 0 ? args[0] : ".";
 		Properties properties = getProperties();
 		
-		Log.setLog(properties);
+		Log.init(properties);
 		Logger logger = Log.getLogger(ExportScripts.class);
-		logger.debug("SD");
+		logger.debug(properties);
+		
+		String zip = "c:\\temp\\zandbak.zip";
+		processPageZip(zip);
 
 //		setupCEConnection(properties);
 //		processSolutions(properties);
@@ -114,6 +120,16 @@ public class ExportScripts {
 
 	private static void processPageZip(String filePath) {
 
+		Zip.traverse(filePath, new ZipEntryVisitor() {
+			public void visitEntry(String fileName, ZipInputStream zis) {
+				try {
+					Zip.extractFile(fileName, zis);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}				
+			}
+		});
 //		logger.debug(TAG, docs);
 		// extract javascript from html in "templates" directory
 	}

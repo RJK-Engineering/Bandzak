@@ -3,7 +3,8 @@ package zandbak;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import zandbak.Zip;
+
+import zandbak.util.Zip;
 
 public class Zand {
 
@@ -16,7 +17,7 @@ public class Zand {
 		// >= java 8
 		// compiled with java 8 "java -source 1.6" => can be run with java 8 
 		String[] a = new String[]{"a","b"};
-		System.out.println(String.join("a", a));
+//		System.out.println(String.join("a", a));
 	}
 
 
@@ -28,7 +29,7 @@ public class Zand {
 	}
 
 	private static void test3() {
-		Zip.unzip("p:\\workspace\\DetailsPSvoorstel.zip", "");
+		Zip.unzip("c:\\temp\\zandbak.zip", "");
 		
 	}
 

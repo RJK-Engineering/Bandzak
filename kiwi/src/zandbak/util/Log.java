@@ -19,7 +19,7 @@ public class Log {
     private static String logFile;
     private static PatternLayout layout;
 
-    public static void setLog(Properties properties) {
+    public static void init(Properties properties) {
         logLevel = properties.getProperty("LogLevel");
         String logFormat = properties.getProperty("LogFormat");
         layout = new PatternLayout(logFormat);
