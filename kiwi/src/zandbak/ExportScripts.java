@@ -37,6 +37,7 @@ public class ExportScripts {
 	public static final String CE_SOLUTIONS_PATH = "/IBM Case Manager/Solutions";
 	public static final String CE_SOLUTION_DEFINITION_NAME = "Solution Definition";
 	public static final String CE_PAGE_FOLDER = "Pages";
+	public static final String PAGE_TEMPLATE_DIR = "templates/";
 
 	private static CEMod ceMod;
 	private static ObjectStore os;
@@ -105,7 +106,8 @@ public class ExportScripts {
 	private static void processWorkflow(Document doc) throws IOException {
 		InputStream is = getContentInputStream(doc);
 		String filename = doc.get_Name() + ".xml";
-		OutputStream os = getFileOutputStream(filename, "workflows");
+		String workflowsSubdir = "workflows";
+		OutputStream os = getFileOutputStream(filename, workflowsSubdir);
 		write(is, os);
 	}
 
@@ -122,10 +124,11 @@ public class ExportScripts {
 	private static void processPage(Document doc) throws IOException {
 		InputStream is = getContentInputStream(doc);
 		String filename = doc.get_Name().replaceAll("[\\\\/:*?\"<>|]", "_") + ".zip";
-		OutputStream os = getFileOutputStream(filename, "pages");
+		String pagesSubdir = "pages";
+		OutputStream os = getFileOutputStream(filename, pagesSubdir);
 		write(is, os);
 
-		String filePath = solutionOutputDir + "/pages/" + filename;
+		String filePath = solutionOutputDir + File.separator + pagesSubdir + File.separator + filename;
 //		processPageZip(filePath);
 	}
 
@@ -133,7 +136,7 @@ public class ExportScripts {
 		Zip.traverse(path, new ZipEntryVisitor() {
 			public void visitEntry(ZipEntry entry, ZipInputStream zis) {
 				String name = entry.getName();
-	            if (! entry.isDirectory() && name.startsWith("templates/"))
+	            if (! entry.isDirectory() && name.startsWith(PAGE_TEMPLATE_DIR))
 					try {
 						String path = solutionOutputDir + File.separator + name;
 						logger.info("Unzipping to " + path);
@@ -211,12 +214,12 @@ public class ExportScripts {
 
 	private static OutputStream getFileOutputStream(String filename, String subFolder) throws FileNotFoundException {
 		String path = solutionOutputDir;
-		if (subFolder != null) path += "/" + subFolder;
+		if (subFolder != null) path += File.separator + subFolder;
 
 		File dir = new File(path);
 		if (! dir.exists()) dir.mkdirs();
 
-		path += "/" + filename;
+		path += File.separator + filename;
 		return new FileOutputStream(path);
 	}
 
