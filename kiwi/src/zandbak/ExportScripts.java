@@ -32,58 +32,63 @@ import zandbak.util.Zip;
 @SuppressWarnings("rawtypes")
 public class ExportScripts {
 
-	private static String objectStore = "DOS";
 	private static String ceModPropertyFile = "ExportScripts.properties";
-	private static String solutionsPath = "/IBM Case Manager/Solutions";
-	private static String pageFolder = "Pages";
+
+	public static final String CE_SOLUTIONS_PATH = "/IBM Case Manager/Solutions";
+	public static final String CE_SOLUTION_DEFINITION_NAME = "Solution Definition";
+	public static final String CE_PAGE_FOLDER = "Pages";
+
 	private static CEMod ceMod;
 	private static ObjectStore os;
-	private static String solutionDefinitionDocumentName = "Solution Definition";
+
 	protected static String outputDir;
+	protected static String solutionOutputDir;
 	protected static Logger logger;
 
 	public static void main(String[] args) throws IOException {
 		outputDir = args.length > 0 ? args[0] : ".";
 		Properties properties = getProperties();
-		
+
 		Log.init(properties);
 		logger = Log.getLogger(ExportScripts.class);
 		logger.debug(properties);
-		
-		String zip = "c:\\temp\\3.zip";
-		processPageZip(zip);
 
-//		setupCEConnection(properties);
-//		processSolutions(properties);
+//		String zip = "c:\\temp\\3.zip";
+//		processPageZip(zip);
+
+		setupCEConnection(properties);
+		processSolutions(properties);
 	}
 
 	private static void processSolutions(Properties properties) throws IOException {
-		Folder solutions = Factory.Folder.fetchInstance(os, solutionsPath, null);
+		Folder solutions = Factory.Folder.fetchInstance(os, CE_SOLUTIONS_PATH, null);
 		FolderSet solutionFolders = solutions.get_SubFolders();
 		Iterator i = solutionFolders.iterator();
 		while (i.hasNext()) {
 			Folder folder = (Folder) i.next();
+			logger.info("Solution: " + folder.get_FolderName());
+			solutionOutputDir = outputDir + File.separator + folder.get_FolderName();
 			processSolution(folder);
 		}
 	}
 
 	private static void processSolution(Folder solution) throws IOException {
 		String solutionName = solution.get_FolderName();
-		String solutionCEPath = solutionsPath + "/" + solutionName;
+		String solutionCEPath = CE_SOLUTIONS_PATH + "/" + solutionName;
 
-		processSolutionDefinition(solutionCEPath + "/" + solutionDefinitionDocumentName, solutionName);
+		processSolutionDefinition(solutionCEPath + "/" + CE_SOLUTION_DEFINITION_NAME, solutionName);
 
 		DocumentSet docs = solution.get_ContainedDocuments();
 		processSolutionDocuments(docs);
 
-		processPages(solutionCEPath + "/" + pageFolder);
+		processPages(solutionCEPath + "/" + CE_PAGE_FOLDER);
 	}
 
 	private static void processSolutionDefinition(String cePath, String solutionName) throws IOException {
 		Document solutionDefinition = Factory.Document.fetchInstance(os, cePath, null);
 		InputStream is = getContentInputStream(solutionDefinition);
 		String filename = solutionName + ".xml";
-		OutputStream os = getFileOutputStream(filename, "solutions");
+		OutputStream os = getFileOutputStream(filename, null);
 		write(is, os);
 	}
 
@@ -120,8 +125,8 @@ public class ExportScripts {
 		OutputStream os = getFileOutputStream(filename, "pages");
 		write(is, os);
 
-		String filePath = outputDir + "/pages/" + filename;
-		processPageZip(filePath);
+		String filePath = solutionOutputDir + "/pages/" + filename;
+//		processPageZip(filePath);
 	}
 
 	private static void processPageZip(String path) {
@@ -130,14 +135,14 @@ public class ExportScripts {
 				String name = entry.getName();
 	            if (! entry.isDirectory() && name.startsWith("templates/"))
 					try {
-						String path = outputDir + File.separator + name;
+						String path = solutionOutputDir + File.separator + name;
 						logger.info("Unzipping to " + path);
 						Zip.extractFile(path, zis);
 						processPage(path);
 					} catch (IOException e) {
 						logger.error(e);
 						System.exit(1);
-					}				
+					}
 			}
 		});
 	}
@@ -155,7 +160,7 @@ public class ExportScripts {
 			Matcher m;
 			boolean matchScriptAction = false;
 			boolean matchAdapterScript = false;
-			
+
 			String line;
 		    while ((line = br.readLine()) != null) {
 		        if (matchScriptAction) {
@@ -169,7 +174,7 @@ public class ExportScripts {
 						String label = m.group(1);
 //						System.out.println("label: " + label);
 		        		continue;
-					} 
+					}
 					m = scriptActionScriptPattern.matcher(line);
 					if (m.matches()) {
 						String type = m.group(1);
@@ -197,7 +202,7 @@ public class ExportScripts {
 		    }
 		} finally {
 		    br.close();
-		}	
+		}
 	}
 
 	private static InputStream getContentInputStream(Document document) {
@@ -205,7 +210,7 @@ public class ExportScripts {
 	}
 
 	private static OutputStream getFileOutputStream(String filename, String subFolder) throws FileNotFoundException {
-		String path = outputDir;
+		String path = solutionOutputDir;
 		if (subFolder != null) path += "/" + subFolder;
 
 		File dir = new File(path);
@@ -230,7 +235,7 @@ public class ExportScripts {
 		CEMod.test = true;
 
 		ceMod = new CEMod();
-		os = ceMod.getObjectStore(objectStore);
+		os = ceMod.getObjectStore(properties.getProperty("DesignObjectStore"));
 	}
 
 	private static void write(InputStream is, OutputStream os) throws IOException {
