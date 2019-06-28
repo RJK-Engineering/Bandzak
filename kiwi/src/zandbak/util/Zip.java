@@ -9,8 +9,6 @@ import java.util.zip.ZipInputStream;
 
 public class Zip {
 
-	public static String destDirPath = ".";
-
 	public static void unzip(String filePath, String destDirPath) {
 		File dir = new File(destDirPath);
 		if (!dir.exists()) dir.mkdirs();
@@ -49,12 +47,11 @@ public class Zip {
 		try {
 			fis = new FileInputStream(filePath);
 			ZipInputStream zis = new ZipInputStream(fis);
-			ZipEntry ze = zis.getNextEntry();
-			while (ze != null) {
-				String fileName = ze.getName();
-				visitor.visitEntry(fileName, zis);
+			ZipEntry entry = zis.getNextEntry();
+			while (entry != null) {
+				visitor.visitEntry(entry, zis);
 			   	zis.closeEntry();
-				ze = zis.getNextEntry();
+				entry = zis.getNextEntry();
 			}
 			zis.closeEntry();
 			zis.close();
@@ -62,22 +59,18 @@ public class Zip {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
-	public static void extractFile(String fileName, ZipInputStream zis) throws IOException {
-		File newFile = new File(destDirPath + File.separator + fileName);
-		if (zis.available() == 0) return;
-		System.out.println(zis.available());
-		System.out.println("Unzipping to "+newFile.getAbsolutePath());
-//		new File(newFile.getParent()).mkdirs();
-//
-//		FileOutputStream fos = new FileOutputStream(newFile);
-//		int len;
-//		byte[] buffer = new byte[1024];
-//		while ((len = zis.read(buffer)) > 0)
-//			fos.write(buffer, 0, len);
-//		fos.close();
+	public static void extractFile(String filename, ZipInputStream zis) throws IOException {
+		File newFile = new File(filename);
+		new File(newFile.getParent()).mkdirs();
+
+		FileOutputStream fos = new FileOutputStream(newFile);
+		int len;
+		byte[] buffer = new byte[1024];
+		while ((len = zis.read(buffer)) > 0)
+			fos.write(buffer, 0, len);
+		fos.close();
 	}
 
 }

@@ -1,13 +1,18 @@
 package zandbak;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.log4j.Logger;
@@ -34,17 +39,18 @@ public class ExportScripts {
 	private static CEMod ceMod;
 	private static ObjectStore os;
 	private static String solutionDefinitionDocumentName = "Solution Definition";
-	private static String outputDir;
+	protected static String outputDir;
+	protected static Logger logger;
 
 	public static void main(String[] args) throws IOException {
 		outputDir = args.length > 0 ? args[0] : ".";
 		Properties properties = getProperties();
 		
 		Log.init(properties);
-		Logger logger = Log.getLogger(ExportScripts.class);
+		logger = Log.getLogger(ExportScripts.class);
 		logger.debug(properties);
 		
-		String zip = "c:\\temp\\zandbak.zip";
+		String zip = "c:\\temp\\3.zip";
 		processPageZip(zip);
 
 //		setupCEConnection(properties);
@@ -118,20 +124,80 @@ public class ExportScripts {
 		processPageZip(filePath);
 	}
 
-	private static void processPageZip(String filePath) {
-
-		Zip.traverse(filePath, new ZipEntryVisitor() {
-			public void visitEntry(String fileName, ZipInputStream zis) {
-				try {
-					Zip.extractFile(fileName, zis);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}				
+	private static void processPageZip(String path) {
+		Zip.traverse(path, new ZipEntryVisitor() {
+			public void visitEntry(ZipEntry entry, ZipInputStream zis) {
+				String name = entry.getName();
+	            if (! entry.isDirectory() && name.startsWith("templates/"))
+					try {
+						String path = outputDir + File.separator + name;
+						logger.info("Unzipping to " + path);
+						Zip.extractFile(path, zis);
+						processPage(path);
+					} catch (IOException e) {
+						logger.error(e);
+						System.exit(1);
+					}				
 			}
 		});
-//		logger.debug(TAG, docs);
-		// extract javascript from html in "templates" directory
+	}
+
+	public static void processPage(String path) throws IOException {
+		logger.info("Path " + path);
+		BufferedReader br = new BufferedReader(new FileReader(path));
+		try {
+			String scriptActionStr = "\"actionDefinitionId\": \"icm.action.utility.ScriptAction\"";
+			Pattern scriptActionLabelPattern = Pattern.compile(".*\"label\": \"(.*)\".*");
+			Pattern scriptActionScriptPattern = Pattern.compile(".*\"script(\\w+)\": \"(.*)\".*");
+			Pattern scriptActionEndPattern = Pattern.compile("\\s*},?\\s*");
+			Pattern scriptAdapterNamePattern = Pattern.compile(".*icm\\.pgwidget\\.scriptadapter\\.ScriptAdapter.*, name:\"(.+?)\".*");
+			Pattern scriptAdapterPayloadPattern = Pattern.compile(".*\"payload\": \"(.*)\".*");
+			Matcher m;
+			boolean matchScriptAction = false;
+			boolean matchAdapterScript = false;
+			
+			String line;
+		    while ((line = br.readLine()) != null) {
+		        if (matchScriptAction) {
+					m = scriptActionEndPattern.matcher(line);
+		        	if (m.matches()) {
+						matchScriptAction = false;
+		        		continue;
+		        	}
+					m = scriptActionLabelPattern.matcher(line);
+					if (m.matches()) {
+						String label = m.group(1);
+//						System.out.println("label: " + label);
+		        		continue;
+					} 
+					m = scriptActionScriptPattern.matcher(line);
+					if (m.matches()) {
+						String type = m.group(1);
+						String script = m.group(2);
+//						if (type.equals("Execute"))
+//						System.out.println("type: " + type + " script: " + script);
+					}
+		        } else if (matchAdapterScript) {
+					m = scriptAdapterPayloadPattern.matcher(line);
+					if (m.matches()) {
+						String script = m.group(1);
+//						System.out.println("script: " + script);
+						matchAdapterScript = false;
+					}
+		        } else if (line.contains(scriptActionStr)) {
+		        	matchScriptAction = true;
+		        } else {
+					m = scriptAdapterNamePattern.matcher(line);
+					if (m.matches()) {
+						String name = m.group(1);
+//						System.out.println("name: " + name);
+						matchAdapterScript = true;
+					}
+		        }
+		    }
+		} finally {
+		    br.close();
+		}	
 	}
 
 	private static InputStream getContentInputStream(Document document) {
