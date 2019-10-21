@@ -6,7 +6,13 @@ import java.util.Properties;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
-		test2();
+		test3();
+	}
+
+	private static void test3() throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmm00");
+		String now = sdf.format(new Date());
+		System.out.println(now);
 	}
 
 	private static void test2() throws ParseException {
