@@ -1,13 +1,28 @@
-import java.nio.file.FileVisitor;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class WalkDirs {
-
+	
+	private static ScanModuleVisitor visitor;
+	
 	public static void main(String[] args) throws Exception {
-		FileVisitor<? super Path> visitor = new ScanModuleVisitor();
-		Files.walkFileTree(Paths.get("C:\\temp"), visitor);
+		visitor = new ScanModuleVisitor();
+//		scanDir();
+		scanFile();
 	}
 	
+	private static void scanDir() throws IOException {
+		Files.walkFileTree(Paths.get("C:\\temp"), visitor);	
+	}
+
+	private static void scanFile() {
+		Path file = Paths.get("C:\\temp\\ids.txt");
+//		doesn't work
+//		Files.walkFileTree(file, visitor);
+		
+		visitor.visitFile(file.toFile());
+	}
+
 }

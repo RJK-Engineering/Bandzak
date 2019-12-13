@@ -13,24 +13,12 @@ public class ScanModuleVisitor implements FileVisitor<Path> {
 		scanModule_preVisitDir(dir.toFile());
 		dir.toFile().listFiles(new FileFilter() {
 			public boolean accept(File file) {
-				scanModule_visitFile(file);
+				visitFile(file);
 				return false;
 			}
 		});
 		scanModule_postVisitDir(dir.toFile());
 		return FileVisitResult.CONTINUE;
-	}
-
-	private void scanModule_preVisitDir(File dir) {
-		System.out.println(dir.getAbsolutePath());
-	}
-
-	private void scanModule_postVisitDir(File dir) {
-		System.out.println("-----------------------");
-	}
-
-	private void scanModule_visitFile(File file) {
-		System.out.println(file.getName());
 	}
 
 	@Override
@@ -51,6 +39,22 @@ public class ScanModuleVisitor implements FileVisitor<Path> {
 		} else {
 			throw e;
 		}
+	}
+
+	public void visitFile(File file) {
+		scanModule_visitFile(file);
+	}
+
+	private void scanModule_preVisitDir(File dir) {
+		System.out.println(dir.getAbsolutePath());
+	}
+
+	private void scanModule_postVisitDir(File dir) {
+		System.out.println("-----------------------");
+	}
+
+	private void scanModule_visitFile(File file) {
+		System.out.println(file.getName());
 	}
 
 }
