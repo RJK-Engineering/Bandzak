@@ -6,9 +6,18 @@ import java.util.Properties;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
-		test3();
+		char[] a = null;
+		if (a instanceof char[])
+			System.out.println("Zekers");
+		a = new char[] {'a'};
+		if (a instanceof char[])
+			System.out.println("Zekers");
 	}
 
+	private static void test4() throws ParseException {
+		 System.out.println( "* \\ / : ? \" < > |".replaceAll("[*\\\\/:\\?\\\"<>\\|]", ".") );
+	}
+	
 	private static void test3() throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmm00");
 		String now = sdf.format(new Date());

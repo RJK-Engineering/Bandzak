@@ -21,7 +21,7 @@ public class ContentEngine {
 	public static void main(String[] args) throws IOException {
 		Properties properties = getProperties();
 		setupCEConnection(properties);
-		test2();
+		test1();
 	}
 
 	private static void test2() {
@@ -36,8 +36,6 @@ public class ContentEngine {
 			System.out.println(e.getMessage());
 			System.out.println(e.getClass().getName());
 		}
-		
-
 	}
 	
 	private static void test1() {
@@ -59,6 +57,16 @@ public class ContentEngine {
 			// or
 			System.out.println(props.getStringValue("ExternZaaknummer"));
 			System.out.println(props.getIdValue("Id"));
+			
+			System.out.println("" + (Document)(props.get("DocumentDISSecurityProxy").getObjectValue()));
+			
+			// find does not throw error like get() but returns null
+			System.out.println("find() -> " + props.find("sdfdsf"));
+			
+			System.out.println("find() -> " + props.find("ComponentBindingLabel"));
+			// Property value is null if not set
+			System.out.println("getStringValue() -> " + props.find("ComponentBindingLabel").getStringValue());
+			
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}

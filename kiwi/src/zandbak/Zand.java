@@ -4,19 +4,64 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import nl.novadoc.rm.rest.utils.RMRestUtils;
 import zandbak.util.Zip;
 import zandbak.util.ZipEntryVisitor;
 
 public class Zand {
 
 	protected static String bla = "!";
+	private static int maxRecordFolderNameLength;
 
 	public static void main(String[] args) {
-		test5();
+	    Calendar c = Calendar.getInstance();
+	    c.add(Calendar.YEAR, 20);  
+	    System.out.println(c.getTime());
+//		search("f", "w", "o", 0);
+//		search("f", "w", "o", 1);
+//		search("f", "w", "", 0);
+//		search("f", "", "", 0);
+//		search("f", "", "o", 0);
+	}
+
+	public static void search(String from, String where,
+			String orderBy, int maxResults) {
+
+		String topString 	 = maxResults > 0 						 ? String.format(" TOP %s", maxResults) : "";
+		String whereString   = where   != null && !where  .isEmpty() ? String.format(" WHERE %s", where) : "";
+		String orderByString = orderBy != null && !orderBy.isEmpty() ? String.format(" ORDER BY %s ASC", orderBy) : "";
+	
+		System.out.println( 
+			String.format("SELECT%s * FROM %s%s%s", topString, from, whereString, orderByString)
+		);
+	}
+
+	private static void test() {
+		System.out.println(String.format("%s - %s_%d", "onderwerp", "thema", 123));
+	}
+
+    private static void strRepeat() {
+		maxRecordFolderNameLength = 10;
+//		System.out.println"123"));
+		String str = "abc"; 
+		str = new String(new char[10]).replace("\0", str);
+		System.out.println(getFolderName(str));
+	}
+
+	private static String getFolderName(String name) {
+        name = name.replaceAll("[*\\\\/:\\?\\\"<>\\|]", ".");
+        if (maxRecordFolderNameLength < name.length())
+            name = name.substring(0, maxRecordFolderNameLength);
+        return name;
+    }
+	
+	private static void test6() {
+		System.out.println("abc".substring(0,2));
 	}
 
 	private static void test5() {
