@@ -13,7 +13,7 @@ public class ScanModuleVisitor implements FileVisitor<Path> {
 		scanModule_preVisitDir(dir.toFile());
 		dir.toFile().listFiles(new FileFilter() {
 			public boolean accept(File file) {
-				visitFile(file);
+				scanModule_visitFile(file);
 				return false;
 			}
 		});
