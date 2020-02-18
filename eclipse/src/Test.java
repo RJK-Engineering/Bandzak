@@ -1,3 +1,4 @@
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,6 +7,15 @@ import java.util.Properties;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
+		File resultsFolder = new File(".");
+		System.out.println(resultsFolder.getCanonicalPath() + File.separator + "fileName");
+		System.out.println(String.format("value is %.2f", 32.3));  
+		System.out.println(String.format("value is %.0f", 32.3));
+		System.out.println(System.getenv("APPDATA"));
+		System.out.println("asdf/sdfd/sf".replaceAll("/", "a"));
+	}
+	
+	private static void test5() throws ParseException {
 		char[] a = null;
 		if (a instanceof char[])
 			System.out.println("Zekers");
