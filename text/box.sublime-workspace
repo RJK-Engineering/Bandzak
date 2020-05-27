@@ -1,0 +1,931 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"DO",
+				"DOUBLE_BOTTOM"
+			],
+			[
+				"doubl",
+				"DOUBLE_LEFT"
+			],
+			[
+				"cou",
+				"CORNER_DOUBLE_BOTTOM_RIGHT"
+			],
+			[
+				"corndo",
+				"CORNER_DOUBLE_TOP_LEFT"
+			],
+			[
+				"doub",
+				"DOUBLE_HORIZONTAL"
+			],
+			[
+				"doc",
+				"DOUBLE_CORNER_BOTTOM_RIGHT"
+			],
+			[
+				"cor",
+				"DOUBLE_CORNER_TOP_LEFT"
+			],
+			[
+				"b",
+				"BOTTOM"
+			],
+			[
+				"r",
+				"RIGHT"
+			],
+			[
+				"corn",
+				"DOUBLE_CORNER_TOP_RIGHT"
+			],
+			[
+				"co",
+				"CORNER_BOTTOM_RIGHT"
+			],
+			[
+				"ca",
+				"callback"
+			],
+			[
+				"COR",
+				"CORNER_TOP_LEFT"
+			],
+			[
+				"DOUBLE_CORNER_TOP_r",
+				"DOUBLE_CORNER_TOP_RIGHT"
+			],
+			[
+				"do",
+				"DOUBLE_HORIZONTAL"
+			],
+			[
+				"dou",
+				"DOUBLE_VERTICAL"
+			],
+			[
+				"d",
+				"DOUBLE_BOTTOM"
+			],
+			[
+				"ex",
+				"exists"
+			],
+			[
+				"map",
+				"map2"
+			],
+			[
+				"f",
+				"for\tfor.. Loop"
+			],
+			[
+				"box",
+				"boxes"
+			],
+			[
+				"D",
+				"DOUBLE_LEFT"
+			],
+			[
+				"B",
+				"BOTTOM"
+			],
+			[
+				"DI",
+				"DOUBLE_VERTICAL"
+			],
+			[
+				"c",
+				"cp437missing"
+			],
+			[
+				"cp",
+				"cp437"
+			],
+			[
+				"rig",
+				"RIGHT"
+			],
+			[
+				"ri",
+				"RIGHT"
+			],
+			[
+				"bot",
+				"BOTTOM"
+			],
+			[
+				"DE",
+				"DOUBLE_HORIZONTAL"
+			],
+			[
+				"join",
+				"JOINED"
+			],
+			[
+				"l",
+				"LEFT"
+			],
+			[
+				"fo",
+				"fore\tforeach.. Loop"
+			],
+			[
+				"min",
+				"minor"
+			],
+			[
+				"creat",
+				"CreateTempFile"
+			],
+			[
+				"tot",
+				"TotalCommander"
+			],
+			[
+				"po",
+				"Pod"
+			],
+			[
+				"opt",
+				"Options"
+			],
+			[
+				"opti",
+				"Options"
+			],
+			[
+				"cat",
+				"catdir"
+			],
+			[
+				"ge",
+				"GetPaths"
+			],
+			[
+				"cre",
+				"CreateFile"
+			],
+			[
+				"pa",
+				"paths"
+			],
+			[
+				"LIST",
+				"listFile"
+			],
+			[
+				"listf",
+				"listFiles"
+			],
+			[
+				"Filev",
+				"GetFileVisitor"
+			],
+			[
+				"F",
+				"File"
+			],
+			[
+				"vis",
+				"visitFile"
+			],
+			[
+				"m",
+				"main\tmethod (main)"
+			],
+			[
+				"vi",
+				"visitor"
+			],
+			[
+				"v",
+				"volume"
+			],
+			[
+				"C",
+				"CONTINUE"
+			],
+			[
+				"ret",
+				"returning"
+			],
+			[
+				"SKS",
+				"SKIP_SIBLINGS"
+			],
+			[
+				"Fil",
+				"FileVisitResult"
+			],
+			[
+				"ter",
+				"TERMINATE"
+			],
+			[
+				"S",
+				"SKIP_SIBLINGS"
+			],
+			[
+				"s",
+				"SimpleFileVisitor"
+			],
+			[
+				"tz",
+				"timeZone"
+			],
+			[
+				"tra",
+				"traversal"
+			],
+			[
+				"pod",
+				"Pod"
+			],
+			[
+				"op",
+				"Options"
+			],
+			[
+				"ha",
+				"HandleOptions"
+			],
+			[
+				"Han",
+				"HandleOptions"
+			],
+			[
+				"fore",
+				"foreach"
+			],
+			[
+				"conf",
+				"CONFIGURATION"
+			],
+			[
+				"Oo",
+				"OPTIONS"
+			],
+			[
+				"O",
+				"OPTIONS"
+			],
+			[
+				"sec",
+				"sections"
+			],
+			[
+				"mess",
+				"MESSAGES"
+			],
+			[
+				"log",
+				"logFile"
+			],
+			[
+				"sho",
+				"showInfoAfterLinesProcessed"
+			],
+			[
+				"sele",
+				"selectStatement"
+			],
+			[
+				"sel",
+				"selectStatement"
+			],
+			[
+				"se",
+				"selectrow_array"
+			],
+			[
+				"fe",
+				"fetchrow_hashref"
+			],
+			[
+				"cha",
+				"changed"
+			],
+			[
+				"comm",
+				"commit"
+			],
+			[
+				"h",
+				"header"
+			],
+			[
+				"print",
+				"printInfo"
+			],
+			[
+				"inp",
+				"inputFile"
+			],
+			[
+				"sh",
+				"showCountAfterNrOfLinesProcessed"
+			],
+			[
+				"M",
+				"MET"
+			],
+			[
+				"to",
+				"total"
+			],
+			[
+				"va",
+				"valueChanged"
+			],
+			[
+				"col",
+				"columnNumber"
+			],
+			[
+				"def",
+				"defaultWidth"
+			],
+			[
+				"pre",
+				"preUpdate"
+			],
+			[
+				"ev",
+				"eventHandlers"
+			],
+			[
+				"e",
+				"ERRORLEVEL"
+			],
+			[
+				"spin",
+				"spinnerSelection"
+			],
+			[
+				"spi",
+				"spinnerSelection"
+			],
+			[
+				"ran",
+				"randomSpinner"
+			],
+			[
+				"sp",
+				"spinnerSelectio"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "cp437borders.txt",
+			"settings":
+			{
+				"buffer_size": 482,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Console/TextCanvas.pm",
+			"settings":
+			{
+				"buffer_size": 9216,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "box.pl",
+			"settings":
+			{
+				"buffer_size": 1543,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"plins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 206.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/workspace/Bandzak/text/TextCanvas.pm",
+		"/C/workspace/Bandzak/text/cp437borders.txt",
+		"/C/workspace/Bandzak/.gitignore",
+		"/C/workspace/Bandzak/eclipse/.classpath",
+		"/C/workspace/Bandzak/kiwi/.project",
+		"/C/workspace/__red.txt",
+		"/C/download/2Q/Cara Rose .txt",
+		"/C/scripts/RJK-utils/totalcmd/chdir.pl",
+		"/H/data/filecheck/filename_templates.txt",
+		"/C/Users/Rob/AppData/Local/TotalCommander/usercmd.ini",
+		"/C/scripts/perllib/TotalCmd/Utils.pm",
+		"/C/Users/Rob/AppData/Local/RJK-utils.bat",
+		"/C/scripts/RJK-utils/config.bat",
+		"/C/scripts/RJK-utils/bat/tccd.bat",
+		"/C/scripts/RJK-utils/bat/chdir.bat",
+		"/C/scripts/perllib/TotalCmd/UsercmdIni.pm",
+		"/C/scripts/perllib/TotalCmd/Inc.pm",
+		"/C/scripts/perllib/TotalCmd/Command.pm",
+		"/C/scripts/filecheck/idx.txt.pl",
+		"/C/scripts/development/filecheck/idx.pl",
+		"/C/scripts/RJK-utils/bat/tclog.bat",
+		"/H/data/filecheck/dirs.tsv",
+		"/H/data/filecheck/dirs.txt",
+		"/C/workspace/RJK-utils/fs/sync.pl",
+		"/C/workspace/temp1.sublime-project",
+		"/C/scripts/RJK-utils/.gitignore",
+		"/C/workspace/filecheck/.gitignore",
+		"/C/Users/Rob/AppData/Roaming/Sublime Text 3/Packages/EnvironmentSettings/EnvironmentSettings.sublime-settings",
+		"/C/Users/Rob/AppData/Roaming/Sublime Text 3/Packages/User/EnvironmentSettings.sublime-settings",
+		"/H/workspace/a.txt",
+		"/H/games/2play.txt",
+		"/C/scripts/RJK-utils/totalcmd/log.pl",
+		"/C/scripts/envvars.txt",
+		"/C/Users/Rob/Downloads/wincmd.ini",
+		"/C/Users/Rob/AppData/Local/TotalCommander/wincmd.ini",
+		"/C/Users/Rob/AppData/Local/TotalCommander/wincmd2.ini",
+		"/C/scripts/RJK-utils/plcheck.bat",
+		"/T/stars_best/[busty]/[new]/Tekohas/yp/8/asd",
+		"/T/stars_best/[british]/[best]/Katie Kaliana - Katie Weale - Katie Amari - Harley Valentine/Katie Weale, Anaya Leon, Cindy Behr, Jodi James, Michelle Thorne - Bluebird - Porno Workout.txt",
+		"/T/stars_best/[british]/[best]/Katie Kaliana - Katie Weale - Katie Amari - Harley Valentine/Katie Weale, Anaya Leon, Cindy Behr, Jodi James, Michelle Thorne - Bluebird - Porno Workout.avi",
+		"/C/temp/WalkTree.java",
+		"/C/scripts/perllib/Options/Pod.pm",
+		"/C/scripts/filecheck/dirs.pl",
+		"/C/scripts/www/newtabpod.pl",
+		"/C/scripts/www/dc.pl",
+		"/C/scripts/totalcmd/tc.pl",
+		"/C/scripts/totalcmd/mon.pl",
+		"/C/scripts/totalcmd/logfind.pl",
+		"/C/scripts/totalcmd/chdir.pl",
+		"/C/scripts/tbmtv/test/mmdiff.pl",
+		"/C/scripts/tbmtv/hmtcut.pl",
+		"/C/scripts/tbmtv/cut.pl",
+		"/C/scripts/system/chletter.pl",
+		"/C/scripts/RJK-perl5lib/eg/OptionsPodScriptTemplate.pl",
+		"/C/scripts/perl/pod/pod2usage.pl",
+		"/C/scripts/perl/keys/keylayout.pl",
+		"/C/scripts/mpc/tweak.pl",
+		"/C/scripts/mpc/mpcssmon.pl",
+		"/C/scripts/mpc/mpcmon.pl",
+		"/C/scripts/mpc/mpc.pl",
+		"/C/scripts/mpc/keys.pl",
+		"/C/scripts/filecheck/sync.pl",
+		"/C/scripts/filecheck/idx.pl",
+		"/C/scripts/filecheck/fcs.pl",
+		"/C/scripts/filecheck/eMulePartMet.pl",
+		"/C/scripts/dev/template/TmlPodScriptTemplate.pl",
+		"/C/scripts/dev/scripts.pl",
+		"/C/scripts/dev/CoreModules.pl",
+		"/C/scripts/totalcmd/undo.pl",
+		"/C/scripts/totalcmd/show_params.pl",
+		"/C/scripts/totalcmd/q.pl",
+		"/C/scripts/totalcmd/openfile.pl",
+		"/C/scripts/tbmtv/hmt.pl",
+		"/C/scripts/foswiki/test/table2csv.pl",
+		"/C/scripts/filecheck/test/list.pl",
+		"/C/scripts/filecheck/drivestatus.pl",
+		"/C/scripts/development/totalcmd/test/tcmdcmp.pl",
+		"/C/scripts/www/ytdl.pl",
+		"/C/scripts/totalcmd/inicmp.pl",
+		"/C/scripts/totalcmd/copymtime.pl",
+		"/C/scripts/RJK-utils/system/chletter/chletter.pl",
+		"/C/scripts/RJK-utils/fs/sync.pl",
+		"/C/scripts/RJK-utils/filecheck/known/known.pl",
+		"/C/scripts/mpc/mkmpcpl.pl",
+		"/C/scripts/filecheck/test/qchk.pl",
+		"/C/progz/bat/edit.bat",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/DEFAULT.bar",
+		"/C/progz/bat/ydl/pl.bat",
+		"/C/progz/bat/open.bat",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/Avidemux.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/FFmpeg short names.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/IrfanView.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/MKVtoolnix.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/Tasks.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/Video.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/FFmpeg.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/UserCmd.bar",
+		"/C/Users/Rob/AppData/Local/TotalCommander/bars/old.bar",
+		"/C/temp/upperroom/loud/For The Cross + (Spontaneous)  - UPPERROOM-QVQYDIOVW3k.txt",
+		"/C/scripts/bat/index.bat",
+		"/C/scripts/bat/list.bat",
+		"/C/scripts/bat/mksfv.bat",
+		"/C/scripts/bat/docconv.bat",
+		"/C/scripts/bat/batsrc.bat",
+		"/H/scripts/bat/batsrc.bat",
+		"/H/eMule/2/105954291/k/I Prefer Interracial - Scene 3-311202356 Holli Sweet.mp4",
+		"/H/eMule/2/105954291/k/Keepin It Real - Scene 1-2129288762 Chantell Merino.mp4.part",
+		"/H/download/aa.d",
+		"/C/data/log/totalcmd/totalcmd.log",
+		"/H/temp/a.txt",
+		"/C/workspace/RJK-perl5lib/lib/TotalCmd/Utils.pm",
+		"/C/scripts/RJK-perl5lib/lib/TotalCmd/Utils.pm",
+		"/C/scripts/RJK-utils/perl/modref.pl",
+		"/C/scripts/development/perllib/t/Console.t",
+		"/C/scripts/RJK-utils/totalcmd/chdir/chdir.pl",
+		"/C/scripts/RJK-perl5lib/t/File/t/TraverseStats.t",
+		"/C/scripts/perllib/TreeVisitResult.pm",
+		"/C/scripts/perllib/File/Tree.pm",
+		"/C/scripts/RJK-perl5lib/lib/File/FileVisitorWithStats.pm",
+		"/C/temp/WalkTree.txt",
+		"/C/scripts/RJK-perl5lib/lib/File/TreeUtils.pm",
+		"/C/scripts/RJK-perl5lib/lib/File/Tree.pm",
+		"/C/workspace/RJK-perl5lib/lib/File/Tree.pm",
+		"/C/scripts/RJK-perl5lib/lib/File/PathUtils.pm",
+		"/C/workspace/RJK-perl5lib/lib/File/PathUtils.pm",
+		"/C/scripts/RJK-perl5lib/lib/File/Utils.pm",
+		"/C/workspace/RJK-perl5lib/lib/File/Utils.pm",
+		"/C/Users/Rob/Downloads/FileTree.pm"
+	],
+	"find":
+	{
+		"height": 41.0
+	},
+	"find_in_files":
+	{
+		"height": 178.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"|",
+			"CORNER_DOUBLE_BOTTOM_LEFT",
+			"double_top",
+			"charInfo",
+			"canvas",
+			"getChar",
+			"bitarra",
+			"getChar",
+			"DOUBLE_",
+			"HORIZONTAL",
+			"VERTICAL | ",
+			"VERTICAL | LEFT",
+			"T_",
+			"HORIZONTAL",
+			"T_TOP",
+			"T_DOUBLE_TOP",
+			"T_",
+			"T_TOP",
+			"CORNER_TOP_LEFT",
+			"DOUBLE_",
+			"CORNER_DOUBLE_TOP_LEFT",
+			"CORNER_DOUBLE_",
+			"CORNER_DOUBLE_BOTTOM_RIGHT",
+			"TOP | RIGHT",
+			"RIGHT | TOP",
+			"| RIGHT",
+			"BOTTOM | RIGHT",
+			"DOUBLE_TOP | DOUBLE_LEFT",
+			"CORNER_BOTTOM_LEFT",
+			"DOUBLE_TOP | DOUBLE_LEFT",
+			"$cp",
+			"BOTTOM",
+			"RIGHT",
+			"LEFT",
+			"TOP",
+			"DOUBLE_",
+			"CORNER_DOUBLE_TOP_RIGHT",
+			"TOP",
+			"CORNER_DOUBLE_TOP_LEFT",
+			"permutations",
+			"DOUBLE_TOP | DOUBLE_BOTTOM",
+			"_BOTTOM",
+			"DOUBLE_TOP | DOUBLE_BOTTOM",
+			"DOUBLE_TOP",
+			"DOUBLE_HORIZONTAL",
+			"VERTICAL",
+			"TOP | BOTTOM",
+			"VERTICAL",
+			"| HORIZONTAL",
+			" | BOTTOM",
+			"LEFT | RIGHT",
+			"DOUBLE_TOP | DOUBLE_BOTTOM",
+			"DOUBLE_LEFT | DOUBLE_RIGHT",
+			"DOUBLE_CORNER_",
+			"DOUBLE_",
+			"DOUBLE_CORNER_BOTTOM_RIGHT",
+			"DOUBLE_CORNER_BOTTOM_LEFT",
+			"DOUBLE_",
+			"ALL_BITS_SET",
+			"DOUBLE_",
+			" RIGHT .* DOUBLE_RIGHT",
+			"DOUBLE_",
+			" LEFT .* DOUBLE_LEFT",
+			" BOTTOM .* DOUBLE_BOTTOM",
+			" TOP .* DOUBLE_TOP",
+			"TOP .* DOUBLE_TOP",
+			"TOP | BOTTOM | DOUBLE_TOP",
+			"DOUBLE_TOP",
+			"DOUBLE_LEFT",
+			" | DOUBLE_LEFT | DOUBLE_BOTTOM",
+			"CORNER_TOP_RIGHT",
+			"DOUBLE_CORNER_TOP_RIGHT",
+			"LEFT | BOTTOM | DOUBLE_LEFT | DOUBLE_BOTTOM",
+			"TOP | BOTTOM",
+			"CORNER_TOP_LEFT",
+			"TOP | LEFT",
+			"CORNER_BOTTOM_LEFT",
+			"TOP | RIGHT",
+			"CORNER_BOTTOM_LEFT",
+			"RIGHT | BOTTOM",
+			"CORNER_TOP_LEFT",
+			"CORNER_TOP_RIGHT",
+			"RIGHT | BOTTOM",
+			"VERTICAL",
+			"LEFT | BOTTOM",
+			"LEFT | BOTTOM,",
+			"LEFT | BOTTOM",
+			"RIGHT | BOTTOM",
+			"LEFT | RIGHT",
+			"TOP | BOTTOM",
+			"LEFT | RIGHT",
+			"TOP | BOTTOM",
+			"bitArray",
+			"getChar",
+			"$x",
+			"$y",
+			"+",
+			"s",
+			"$s",
+			"$y",
+			"$x",
+			"TOP | BOTTOM",
+			"HORIZONTAL",
+			"placeHorizontal",
+			"placeTopLeft",
+			"placeTopRight",
+			"TOP",
+			"placeTopLeft",
+			"RIGHT | BOTTOM",
+			"CORNER_TOP_LEFT",
+			"RIGHT | BOTTOM",
+			"BOTTOM | RIGHT",
+			"exi",
+			"192",
+			"211",
+			"200",
+			"212",
+			"195",
+			"204",
+			"199",
+			"198",
+			"217",
+			"193",
+			"202",
+			"208",
+			"207",
+			"197",
+			"206"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "cp437borders.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 482,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								412,
+								412
+							]
+						],
+						"settings":
+						{
+							"rainbow_inited": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3011.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Console/TextCanvas.pm",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9216,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2894,
+								2894
+							]
+						],
+						"settings":
+						{
+							"rainbow_inited": true,
+							"syntax": "Packages/Perl/Perl.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 288.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "box.pl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1543,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1413,
+								1426
+							]
+						],
+						"settings":
+						{
+							"rainbow_inited": true,
+							"syntax": "Packages/Perl/Perl.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 712.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 62.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 388.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "box.sublime-project",
+	"replace":
+	{
+		"height": 120.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -4,7 +4,6 @@ use warnings;
 use Console::TextCanvas;
 #~ print (chr($_),"\n") for 179..218; exit;
 #~ print ($_, chr($_),"\n") for 179..218; exit;
-#~ permutations(); exit;
 
 #~ my $html = <<EOT;
 #~ <table class="double">
@@ -46,21 +45,25 @@ my $boxes = [
     [(10,6), (15,1), "s"],
 ];
 
+for (1..50) {
+    my $x = 1 + int rand 60;
+    my $y = 1 + int rand 20;
+    my $w = 1 + int rand 20;
+    my $h = 1 + int rand 4;
+    push @$boxes, [($x,$y), ($w,$h), "f"];
+}
 #~ my $canvas = new Console::TextCanvas(43, 4);
-my $canvas = new Console::TextCanvas(80, 10);
+#~ my $canvas = new Console::TextCanvas(80, 10);
+my $canvas = new Console::TextCanvas(80, 25);
 foreach my $box (@$boxes) {
     $canvas->box(@$box);
 }
-$canvas->draw();
+#~ for (1..22) {
+    $canvas->draw();
+#~     sleep 1;
+#~ }
 #~ $canvas->iterate(sub {
 #~     my ($line, $char, $bitArray) = @_;
 #~     print "$line $char $bitArray\n";
 #~ });
 
-#~ for (1..10) {
-#~     my $x = 1 + int rand 60;
-#~     my $y = 1 + int rand 20;
-#~     my $w = 1 + int rand 20;
-#~     my $h = 1 + int rand 4;
-#~     push @{$table->{boxes}}, [($x,$y), ($w,$h), "s"];
-#~ }

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>contrast</title>
+</head>
+<script type="text/javascript">
+
+var v;
+var contrast;
+var factor;
+
+function slide() {
+    contrast = parseInt(this.value);
+    v.innerHTML = "Contrast: " + contrast + "<br>";
+
+    factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
+    v.innerHTML += "Factor: " + factor + "<br><br>";
+
+    display(55);
+    v.innerHTML += "<br>";
+    display(200);
+    v.innerHTML += "<br>";
+    display(100);
+}
+
+function display(value) {
+    v.innerHTML += "Value: " + value + "<br>";
+
+    var newValue = factor * (value - 128) + 128;
+    newValue = truncate(newValue);
+    v.innerHTML += "New: " + newValue + "<br>";
+}
+
+function truncate(value) {
+    return value < 0 ? 0 : value > 255 ? 255 : value;
+}
+
+function load() {
+    v = document.getElementById('view');
+    c = document.getElementById('control');
+    slide();
+    c.oninput = slide;
+}
+
+</script>
+<body onload="load()">
+
+<div id="view">...</div>
+
+<div class="slidecontainer">
+  <input type="range" min="-255" max="255" value="0" class="slider" id="control">
+</div>
+
+</body>
+</html>
