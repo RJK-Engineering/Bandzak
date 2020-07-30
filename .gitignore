@@ -4,3 +4,4 @@ doc/
 *.properties
 kiwi/src/nl/novadoc/
 kiwi/test/
+*.class
