@@ -1,0 +1,186 @@
+abs()	abs()
+accept()	s.accept()
+alarm()	signal.alarm()
+atan2()	math.atan2(), cmath.atan2()
+bind()	s.bind()
+binmode()	N/A
+bless()	N/A
+caller()	traceback.print_tb()
+chdir()	os.chdir()
+chmod()	os.chmod()
+chomp()	string.strip(), string.rstrip()
+chop()	Various methods availbe
+chown()	os.chown()
+chr()	chr()
+chroot()	N/A
+close()	f.close(), s.close()
+closedir()	Use glob.glob() to get a list of files and iterate over the list
+connect()	s.connect()
+continue	N/A
+cos()	math.cos(), cmath.cos()
+defined()	N/A
+delete()	del
+die()	raise()
+do()	execfile()
+dump()	N/A
+each()	N/A
+eof()	N/A
+eval()	eval(), exec()
+exec()	sys.exec()
+exists()	dict.has_key()
+exit()	sys.exit()
+exp()	math.exp(), cmath.exp()
+fcntl()	fcntl.fcntl()
+fileno()	f.fileno()
+flock()	fcntl.flock()
+fork	os.fork()
+format()	N/A
+formline()	N/A
+getc()	f.getc()
+getgrent()	grp.getgrall()
+getgrgid()	grp.getgrgid()
+getgrnam()	grp.getgrnam()
+gethostbyaddr()	socket.gethostbyaddr()
+gethostbyname()	socket.gethostbyname()
+gethostent()	N/A
+getlogin()	N/A
+getnetbyaddr()	N/A
+getnetbyname()	N/A
+getnetent()	N/A
+getpeername()	s.getpeername()
+getpgrp	os.getpgrp()
+getppid	os.getppid()
+getpriority()	N/A
+getprotobyname()	socket.getprotobyname()
+getprotobynumber()	N/A
+getprotoent()	N/A
+getpwent()	pwd.getpwall()
+getpwnam()	pwd.pwnam()
+getpwuid()	pwd.pwuid()
+getservbyname()	N/A
+getservbyport()	N/A
+getservent()	N/A
+getsockname()	s.getsockname()
+getsockopt()	s.getsockopt()
+glob()	glob.glob()
+gmtime()	time.gmtime()
+goto	N/A
+grep()	filter()
+hex()	eval() will work for strings of the form “0xffff” – without a leading 0x this will be interpreted as an identifier and raise an exception
+import()	import, from
+index()	string.index(), string.find()  in loop in predicate
+int()	int()
+ioctl()	fcntl.ioctl()
+join()	string.join()
+keys()	dict.keys()
+kill()	os.kill()
+last()	break
+lc()	string.lower()
+lcfirst()	N/A
+length()	len()
+link()	os.link()
+listen()	s.listen()
+local	N/A
+localtime()	time.localtime()
+log()	math.log(), cmath.log()
+lstat()	os.lstat()
+m//	re.match(), re.findall()
+map()	map()
+mkdir()	os.mkdir()
+my	N/A
+next()	continue
+no	N/A
+oct()	eval() will work for strings of the form “0377” – without a leading zero this will be interpreted as a decimal
+open()	open(), os.popen(), os.open()
+opendir()	Use glob.glob() to get a list of files and iterate over the list
+ord()	ord()
+pack()	struct.pack()
+package	Python does not have means of creating new namespaces withpin main program or modules.
+pipe()	os.pipe()
+pop()	list.pop()
+pos()	m.pos()
+print()	print, f.write(), s.send()
+printf()	print format % tuple
+prototype()	N/A
+push()	list.append()
+q/STRING/	""""
+qq/STRING/	""""
+qr//	re.escape()
+quotemeta()	re.compile()
+qw//	Needs to be programmed
+qx//	os.exec*()
+rand()	whrandom.random(), whrandom.randint()
+read()	f.read(), s.recv()
+readdir()	N/A
+readline()	f.readline()
+readlink()	os.readlink()
+readpipe()	os.read()
+recv()	s.recv()
+redo()	N/A
+ref()	type()
+rename()	os.rename()
+require	N/A
+reset()	N/A
+return()	return
+reverse()	s.reverse()
+rewinddir()	N/A
+rindex()	string.rfind(), string.rindex()
+rmdir()	os.rmdir()
+s///	re.sub(), re.subn()
+say	print
+scalar()	len
+seek()	os.lseek(), f.seek()
+seekdir()	Use glob.glob() to get a list of files and iterate over the list
+select (default filehandle selection)	You can redirect the standard output by re-opening sys.stdout to point to an alternative file or other filehandle object. Use sys.__stdout__ to print to the original
+shift()	s.pop(0)
+shutdown()	s.shutdown()
+sin()	math.sin(), cmath.sin()
+sleep()	time.sleep()
+socket()	socket.socket()
+socketpair()	N/A
+sort()	s.sort()
+splice()	array[x:y] = [a,b]
+split()	string.split(), re.split()
+sprintf()	Use the format % tuple operator, which returns a formatted string
+sqrt()	math.sqrt(), cmath.sqrt()
+srand()	whrandom.seed()
+stat()	os.stat()
+STDERR	sys.stderr (original version always available in sys.__stderr__)
+STDIN	sys.stdin (original version always available in sys.__stdin__)
+STDOUT	sys.stdout (original version always available in sys.__stdout__)
+study()	N/A
+sub	def (for anonymous subroutines use the lambda statement)
+substr()	s[x:y]
+symlink()	os.symlink()
+syscall()	N/A
+sysopen()	sys.open()
+sysread()	f.read()
+sysseek()	f.sysseek()
+system()	os.system()
+syswrite()	f.write()
+tell()	f.tell()
+telldir()	N/A
+tie()	N/A
+tied()	N/A
+time()	time.time()
+times()	os.times()
+tr///	string.maketrans(), string.translate()
+truncate()	f.truncate()
+uc()	string.upper()
+ucfirst()	string.captilize()
+umask()	os.umask()
+undef	None
+unlink()	os.remove(), os.unlink()
+unpack()	struct.unpack()
+unshift()	s.insert(0,x)
+untie()	N/A
+use	import
+utime()	os.utime()
+values()	dict.values()
+vec()	struct.pack()
+wait()	os.wait()
+waitpid()	os.waitpid()
+wantarray()	N/A
+warn()	N/A
+write()	sys.write(), f.write()
+-X (filetests)	os.access(), os.stat()

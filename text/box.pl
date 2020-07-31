@@ -1,6 +1,10 @@
 use strict;
 use warnings;
 
+use Win32::Console;
+my $STDOUT = new Win32::Console(STD_OUTPUT_HANDLE);
+$STDOUT->OutputCP(437);
+
 use Console::TextCanvas;
 #~ print (chr($_),"\n") for 179..218; exit;
 #~ print ($_, chr($_),"\n") for 179..218; exit;
