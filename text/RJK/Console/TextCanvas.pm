@@ -42,8 +42,8 @@ sub new {
     $self->{width} = shift;
     $self->{height} = shift;
 
-    #~ my %chars = getCodePage437();
-    my %chars = getUnicode();
+    my %chars = getCodePage437();
+    #~ my %chars = getUnicode();
     getReplacements(\%chars);
 
     #~ print join " ", sort {$a <=> $b} keys %chars; exit;
@@ -88,8 +88,8 @@ sub draw {
     foreach my $y (@{$self->{canvas}}) {
         foreach my $x (@$y) {
             if (! defined $x) {
-        $write->(" '@$y'", "\n");
-                $write->("!\n");
+        #~ $write->(" '@$y'", "\n");
+        #~         $write->("!\n");
                 next;
             }
             $write->($self->getChar($x));
@@ -241,7 +241,6 @@ sub getUnicode {
     );
 }
 
-# TODO complete, 437 + replacements is not complete
 my %replacements = (
     TOP, VERTICAL,
     BOTTOM, VERTICAL,
@@ -268,7 +267,6 @@ my %replacements = (
     CORNER_BOTTOM_LEFT | CORNER_DOUBLE_TOP_RIGHT, CORNER_DOUBLE_TOP_RIGHT,
     CORNER_BOTTOM_RIGHT | CORNER_DOUBLE_TOP_LEFT, CORNER_DOUBLE_TOP_LEFT,
 
-
     DOUBLE_TOP | CORNER_TOP_LEFT, DOUBLE_TOP | RIGHT,
     DOUBLE_LEFT | CORNER_TOP_LEFT, DOUBLE_LEFT | BOTTOM,
     CORNER_DOUBLE_BOTTOM_RIGHT | CORNER_TOP_LEFT, CORNER_DOUBLE_BOTTOM_RIGHT,
@@ -284,6 +282,16 @@ my %replacements = (
     DOUBLE_BOTTOM | CORNER_BOTTOM_RIGHT, DOUBLE_BOTTOM | LEFT,
     DOUBLE_RIGHT | CORNER_BOTTOM_RIGHT, DOUBLE_RIGHT | TOP,
     CORNER_DOUBLE_TOP_LEFT | CORNER_BOTTOM_RIGHT, CORNER_DOUBLE_TOP_LEFT,
+
+    DOUBLE_HORIZONTAL | DOUBLE_TOP | BOTTOM, DOUBLE_HORIZONTAL | DOUBLE_TOP,
+    DOUBLE_HORIZONTAL | DOUBLE_BOTTOM | TOP, BOTTOM | DOUBLE_HORIZONTAL,
+    DOUBLE_VERTICAL | DOUBLE_RIGHT | LEFT, DOUBLE_VERTICAL | DOUBLE_RIGHT,
+    DOUBLE_VERTICAL | DOUBLE_LEFT | RIGHT, DOUBLE_VERTICAL | DOUBLE_LEFT,
+
+    HORIZONTAL | TOP | DOUBLE_BOTTOM, HORIZONTAL | TOP,
+    HORIZONTAL | BOTTOM | DOUBLE_TOP, HORIZONTAL | BOTTOM,
+    VERTICAL | RIGHT | DOUBLE_LEFT, VERTICAL | RIGHT,
+    VERTICAL | LEFT | DOUBLE_RIGHT, VERTICAL | LEFT,
 );
 
 sub getReplacements {
