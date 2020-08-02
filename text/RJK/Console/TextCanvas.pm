@@ -1,4 +1,4 @@
-package Console::TextCanvas;
+package RJK::Console::TextCanvas;
 
 use strict;
 use warnings;
