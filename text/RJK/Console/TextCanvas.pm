@@ -35,14 +35,6 @@ use constant {
     CORNER_DOUBLE_TOP_RIGHT => DOUBLE_LEFT | DOUBLE_BOTTOM,
     CORNER_DOUBLE_BOTTOM_LEFT => DOUBLE_TOP | DOUBLE_RIGHT,
     CORNER_DOUBLE_BOTTOM_RIGHT => DOUBLE_TOP | DOUBLE_LEFT,
-    T_TOP => HORIZONTAL | TOP,
-    T_LEFT => VERTICAL | LEFT,
-    T_RIGHT => VERTICAL | RIGHT,
-    T_BOTTOM => HORIZONTAL | BOTTOM,
-    T_DOUBLE_TOP => DOUBLE_HORIZONTAL | DOUBLE_TOP,
-    T_DOUBLE_LEFT => DOUBLE_VERTICAL | DOUBLE_LEFT,
-    T_DOUBLE_RIGHT => DOUBLE_VERTICAL | DOUBLE_RIGHT,
-    T_DOUBLE_BOTTOM => DOUBLE_HORIZONTAL | DOUBLE_BOTTOM,
 };
 
 sub new {
@@ -50,12 +42,15 @@ sub new {
     $self->{width} = shift;
     $self->{height} = shift;
 
-    my %cp437 = getCodePage437();
-    my %cp437all = (%cp437, getUnavailable(\%cp437));
-    #~ print join " ", sort {$a <=> $b} keys %cp437all; exit;
-    #~ print join " ", grep {not exists $cp437all{$_}} 0..ALL_BITS_SET; exit;
+    #~ my %chars = getCodePage437();
+    my %chars = getUnicode();
+    getReplacements(\%chars);
 
-    $self->{map} = [ map { exists $cp437all{$_} ? chr $cp437all{$_} : "?" } 0..ALL_BITS_SET ];
+    #~ print join " ", sort {$a <=> $b} keys %chars; exit;
+    #~ print join " ", grep {not exists $chars{$_}} 0..ALL_BITS_SET; exit;
+
+    $self->{map} = [ map { exists $chars{$_} ? chr $chars{$_} : "?" } 0..ALL_BITS_SET ];
+    $self->{map}[0] = " ";
 
     $self->{canvas} = [];
     push @{$self->{canvas}}, [ (0) x $self->{width} ] for 1 .. $self->{height};
@@ -86,18 +81,21 @@ sub box {
 }
 
 sub draw {
-    my $self = shift;
+    my ($self, $console) = @_;
+
+    my $write = $console ? sub { $console->Write(@_) } : sub { print @_ };
+
     foreach my $y (@{$self->{canvas}}) {
         foreach my $x (@$y) {
             if (! defined $x) {
-        print " '@$y'", "\n";
-                print "!\n";
+        $write->(" '@$y'", "\n");
+                $write->("!\n");
                 next;
             }
-            print $self->getChar($x);
-            #~ print "$x ", $self->getChar($x), "\n" if $x;
+            $write->($self->getChar($x));
+            #~ $write->("$x ", $self->getChar($x), "\n") if $x;
         }
-        print "\n";
+        $write->("\n");
     }
 }
 
@@ -139,14 +137,14 @@ sub update {
 
 sub charInfo {
     my $bitArray = shift;
-    print "TOP " if $bitArray & TOP;
-    print "LEFT " if $bitArray & LEFT;
-    print "RIGHT " if $bitArray & RIGHT;
-    print "BOTTOM " if $bitArray & BOTTOM;
-    print "DOUBLE_TOP " if $bitArray & DOUBLE_TOP;
-    print "DOUBLE_LEFT " if $bitArray & DOUBLE_LEFT;
-    print "DOUBLE_RIGHT " if $bitArray & DOUBLE_RIGHT;
-    print "DOUBLE_BOTTOM " if $bitArray & DOUBLE_BOTTOM;
+    return "TOP" if $bitArray & TOP;
+    return "LEFT" if $bitArray & LEFT;
+    return "RIGHT" if $bitArray & RIGHT;
+    return "BOTTOM" if $bitArray & BOTTOM;
+    return "DOUBLE_TOP" if $bitArray & DOUBLE_TOP;
+    return "DOUBLE_LEFT" if $bitArray & DOUBLE_LEFT;
+    return "DOUBLE_RIGHT" if $bitArray & DOUBLE_RIGHT;
+    return "DOUBLE_BOTTOM" if $bitArray & DOUBLE_BOTTOM;
 }
 
 sub getCodePage437 {
@@ -183,75 +181,116 @@ sub getCodePage437 {
         DOUBLE_VERTICAL, 186,
         DOUBLE_HORIZONTAL, 205,
         DOUBLE_HORIZONTAL | DOUBLE_VERTICAL, 206,
-        T_TOP, 193,
-        T_LEFT, 180,
-        T_RIGHT, 195,
-        T_BOTTOM, 194,
-        T_DOUBLE_LEFT, 185,
-        T_DOUBLE_RIGHT, 204,
-        T_DOUBLE_TOP, 202,
-        T_DOUBLE_BOTTOM, 203,
+        VERTICAL | LEFT, 180,
+        VERTICAL | RIGHT, 195,
+        HORIZONTAL | TOP, 193,
+        HORIZONTAL | BOTTOM, 194,
+        DOUBLE_VERTICAL | DOUBLE_LEFT, 185,
+        DOUBLE_VERTICAL | DOUBLE_RIGHT, 204,
+        DOUBLE_HORIZONTAL | DOUBLE_TOP, 202,
+        DOUBLE_HORIZONTAL | DOUBLE_BOTTOM, 203,
     );
 }
 
-sub getUnavailable {
-    my $cp = shift;
+sub getUnicode {
     return (
-        0, 32,
-
-        TOP, $cp->{0 | VERTICAL},
-        BOTTOM, $cp->{0 | VERTICAL},
-        DOUBLE_TOP, $cp->{0 | DOUBLE_VERTICAL},
-        DOUBLE_BOTTOM, $cp->{0 | DOUBLE_VERTICAL},
-
-        LEFT, $cp->{0 | HORIZONTAL},
-        RIGHT, $cp->{0 | HORIZONTAL},
-        DOUBLE_LEFT, $cp->{0 | DOUBLE_HORIZONTAL},
-        DOUBLE_RIGHT, $cp->{0 | DOUBLE_HORIZONTAL},
-
-
-        TOP | CORNER_DOUBLE_TOP_LEFT, $cp->{0 | CORNER_DOUBLE_TOP_LEFT},
-        TOP | CORNER_DOUBLE_TOP_RIGHT, $cp->{0 | CORNER_DOUBLE_TOP_RIGHT},
-        BOTTOM | CORNER_DOUBLE_BOTTOM_LEFT, $cp->{0 | CORNER_DOUBLE_BOTTOM_LEFT},
-        BOTTOM | CORNER_DOUBLE_BOTTOM_RIGHT, $cp->{0 | CORNER_DOUBLE_BOTTOM_RIGHT},
-
-        LEFT | CORNER_DOUBLE_TOP_LEFT, $cp->{0 | CORNER_DOUBLE_TOP_LEFT},
-        RIGHT | CORNER_DOUBLE_TOP_RIGHT, $cp->{0 | CORNER_DOUBLE_TOP_RIGHT},
-        LEFT | CORNER_DOUBLE_BOTTOM_LEFT, $cp->{0 | CORNER_DOUBLE_BOTTOM_LEFT},
-        RIGHT | CORNER_DOUBLE_BOTTOM_RIGHT, $cp->{0 | CORNER_DOUBLE_BOTTOM_RIGHT},
-
-        CORNER_TOP_LEFT | CORNER_DOUBLE_BOTTOM_RIGHT, $cp->{0 | CORNER_DOUBLE_BOTTOM_RIGHT},
-        CORNER_TOP_RIGHT | CORNER_DOUBLE_BOTTOM_LEFT, $cp->{0 | CORNER_DOUBLE_BOTTOM_LEFT},
-        CORNER_BOTTOM_LEFT | CORNER_DOUBLE_TOP_RIGHT, $cp->{0 | CORNER_DOUBLE_TOP_RIGHT},
-        CORNER_BOTTOM_RIGHT | CORNER_DOUBLE_TOP_LEFT, $cp->{0 | CORNER_DOUBLE_TOP_LEFT},
-
-
-        DOUBLE_TOP | CORNER_TOP_LEFT, $cp->{DOUBLE_TOP | RIGHT},
-        DOUBLE_LEFT | CORNER_TOP_LEFT, $cp->{DOUBLE_LEFT | BOTTOM},
-        CORNER_DOUBLE_BOTTOM_RIGHT | CORNER_TOP_LEFT, $cp->{0 | CORNER_DOUBLE_BOTTOM_RIGHT},
-
-        DOUBLE_TOP | CORNER_TOP_RIGHT, $cp->{DOUBLE_TOP | LEFT},
-        DOUBLE_RIGHT | CORNER_TOP_RIGHT, $cp->{DOUBLE_RIGHT | BOTTOM},
-        CORNER_DOUBLE_BOTTOM_LEFT | CORNER_TOP_RIGHT, $cp->{0 | CORNER_DOUBLE_BOTTOM_LEFT},
-
-        DOUBLE_BOTTOM | CORNER_BOTTOM_LEFT, $cp->{DOUBLE_BOTTOM | RIGHT},
-        DOUBLE_LEFT | CORNER_BOTTOM_LEFT, $cp->{DOUBLE_LEFT | TOP},
-        CORNER_DOUBLE_TOP_RIGHT | CORNER_BOTTOM_LEFT, $cp->{0 | CORNER_DOUBLE_TOP_RIGHT},
-
-        DOUBLE_BOTTOM | CORNER_BOTTOM_RIGHT, $cp->{DOUBLE_BOTTOM | LEFT},
-        DOUBLE_RIGHT | CORNER_BOTTOM_RIGHT, $cp->{DOUBLE_RIGHT | TOP},
-        CORNER_DOUBLE_TOP_LEFT | CORNER_BOTTOM_RIGHT, $cp->{0 | CORNER_DOUBLE_TOP_LEFT},
-
-        T_TOP | DOUBLE_BOTTOM, $cp->{HORIZONTAL | DOUBLE_BOTTOM},
-        T_LEFT | DOUBLE_RIGHT, $cp->{VERTICAL | DOUBLE_RIGHT},
-        T_RIGHT | DOUBLE_LEFT, $cp->{VERTICAL | DOUBLE_LEFT},
-        T_BOTTOM | DOUBLE_TOP, $cp->{HORIZONTAL | DOUBLE_TOP},
-
-        T_DOUBLE_TOP | BOTTOM, $cp->{0 | T_DOUBLE_TOP},
-        T_DOUBLE_LEFT | RIGHT, $cp->{0 | T_DOUBLE_LEFT},
-        T_DOUBLE_RIGHT | LEFT, $cp->{0 | T_DOUBLE_RIGHT},
-        T_DOUBLE_BOTTOM | TOP, $cp->{0 | T_DOUBLE_BOTTOM},
+        VERTICAL, 0x2502,
+        HORIZONTAL, 0x2500,
+        HORIZONTAL | VERTICAL, 0x253C,
+        VERTICAL | DOUBLE_LEFT, 0x2561,
+        VERTICAL | DOUBLE_RIGHT, 0x255E,
+        VERTICAL | DOUBLE_HORIZONTAL, 0x256A,
+        HORIZONTAL | DOUBLE_TOP, 0x2568,
+        HORIZONTAL | DOUBLE_BOTTOM, 0x2565,
+        HORIZONTAL | DOUBLE_VERTICAL, 0x256B,
+        TOP | DOUBLE_LEFT, 0x255B,
+        TOP | DOUBLE_RIGHT, 0x2558,
+        TOP | DOUBLE_HORIZONTAL, 0x2567,
+        LEFT | DOUBLE_TOP, 0x255C,
+        LEFT | DOUBLE_BOTTOM, 0x2556,
+        LEFT | DOUBLE_VERTICAL, 0x2562,
+        RIGHT | DOUBLE_TOP, 0x2559,
+        RIGHT | DOUBLE_BOTTOM, 0x2553,
+        RIGHT | DOUBLE_VERTICAL, 0x255F,
+        BOTTOM | DOUBLE_LEFT, 0x2555,
+        BOTTOM | DOUBLE_RIGHT, 0x2552,
+        BOTTOM | DOUBLE_HORIZONTAL, 0x2564,
+        CORNER_TOP_LEFT, 0x250C,
+        CORNER_TOP_RIGHT, 0x2510,
+        CORNER_BOTTOM_LEFT, 0x2514,
+        CORNER_BOTTOM_RIGHT, 0x2518,
+        CORNER_DOUBLE_TOP_LEFT, 0x2554,
+        CORNER_DOUBLE_TOP_RIGHT, 0x2557,
+        CORNER_DOUBLE_BOTTOM_LEFT, 0x255A,
+        CORNER_DOUBLE_BOTTOM_RIGHT, 0x255D,
+        DOUBLE_VERTICAL, 0x2551,
+        DOUBLE_HORIZONTAL, 0x2550,
+        DOUBLE_HORIZONTAL | DOUBLE_VERTICAL, 0x256C,
+        VERTICAL | LEFT, 0x2524,
+        VERTICAL | RIGHT, 0x251C,
+        HORIZONTAL | TOP, 0x2534,
+        HORIZONTAL | BOTTOM, 0x252C,
+        DOUBLE_VERTICAL | DOUBLE_LEFT, 0x2563,
+        DOUBLE_VERTICAL | DOUBLE_RIGHT, 0x2560,
+        DOUBLE_HORIZONTAL | DOUBLE_TOP, 0x2569,
+        DOUBLE_HORIZONTAL | DOUBLE_BOTTOM, 0x2566,
+        LEFT, 0x2574,
+        RIGHT, 0x2576,
+        TOP, 0x2575,
+        BOTTOM, 0x2577,
     );
+}
+
+# TODO complete, 437 + replacements is not complete
+my %replacements = (
+    TOP, VERTICAL,
+    BOTTOM, VERTICAL,
+    DOUBLE_TOP, DOUBLE_VERTICAL,
+    DOUBLE_BOTTOM, DOUBLE_VERTICAL,
+
+    LEFT, HORIZONTAL,
+    RIGHT, HORIZONTAL,
+    DOUBLE_LEFT, DOUBLE_HORIZONTAL,
+    DOUBLE_RIGHT, DOUBLE_HORIZONTAL,
+
+    TOP | CORNER_DOUBLE_TOP_LEFT, CORNER_DOUBLE_TOP_LEFT,
+    TOP | CORNER_DOUBLE_TOP_RIGHT, CORNER_DOUBLE_TOP_RIGHT,
+    BOTTOM | CORNER_DOUBLE_BOTTOM_LEFT, CORNER_DOUBLE_BOTTOM_LEFT,
+    BOTTOM | CORNER_DOUBLE_BOTTOM_RIGHT, CORNER_DOUBLE_BOTTOM_RIGHT,
+
+    LEFT | CORNER_DOUBLE_TOP_LEFT, CORNER_DOUBLE_TOP_LEFT,
+    RIGHT | CORNER_DOUBLE_TOP_RIGHT, CORNER_DOUBLE_TOP_RIGHT,
+    LEFT | CORNER_DOUBLE_BOTTOM_LEFT, CORNER_DOUBLE_BOTTOM_LEFT,
+    RIGHT | CORNER_DOUBLE_BOTTOM_RIGHT, CORNER_DOUBLE_BOTTOM_RIGHT,
+
+    CORNER_TOP_LEFT | CORNER_DOUBLE_BOTTOM_RIGHT, CORNER_DOUBLE_BOTTOM_RIGHT,
+    CORNER_TOP_RIGHT | CORNER_DOUBLE_BOTTOM_LEFT, CORNER_DOUBLE_BOTTOM_LEFT,
+    CORNER_BOTTOM_LEFT | CORNER_DOUBLE_TOP_RIGHT, CORNER_DOUBLE_TOP_RIGHT,
+    CORNER_BOTTOM_RIGHT | CORNER_DOUBLE_TOP_LEFT, CORNER_DOUBLE_TOP_LEFT,
+
+
+    DOUBLE_TOP | CORNER_TOP_LEFT, DOUBLE_TOP | RIGHT,
+    DOUBLE_LEFT | CORNER_TOP_LEFT, DOUBLE_LEFT | BOTTOM,
+    CORNER_DOUBLE_BOTTOM_RIGHT | CORNER_TOP_LEFT, CORNER_DOUBLE_BOTTOM_RIGHT,
+
+    DOUBLE_TOP | CORNER_TOP_RIGHT, DOUBLE_TOP | LEFT,
+    DOUBLE_RIGHT | CORNER_TOP_RIGHT, DOUBLE_RIGHT | BOTTOM,
+    CORNER_DOUBLE_BOTTOM_LEFT | CORNER_TOP_RIGHT, CORNER_DOUBLE_BOTTOM_LEFT,
+
+    DOUBLE_BOTTOM | CORNER_BOTTOM_LEFT, DOUBLE_BOTTOM | RIGHT,
+    DOUBLE_LEFT | CORNER_BOTTOM_LEFT, DOUBLE_LEFT | TOP,
+    CORNER_DOUBLE_TOP_RIGHT | CORNER_BOTTOM_LEFT, CORNER_DOUBLE_TOP_RIGHT,
+
+    DOUBLE_BOTTOM | CORNER_BOTTOM_RIGHT, DOUBLE_BOTTOM | LEFT,
+    DOUBLE_RIGHT | CORNER_BOTTOM_RIGHT, DOUBLE_RIGHT | TOP,
+    CORNER_DOUBLE_TOP_LEFT | CORNER_BOTTOM_RIGHT, CORNER_DOUBLE_TOP_LEFT,
+);
+
+sub getReplacements {
+    my $cp = shift;
+    foreach (keys %replacements) {
+        $cp->{$_} //= $cp->{$replacements{$_}};
+    }
 }
 
 1;
