@@ -5,7 +5,7 @@ use Win32::Console;
 my $STDOUT = new Win32::Console(STD_OUTPUT_HANDLE);
 $STDOUT->OutputCP(437);
 
-use Console::TextCanvas;
+use RJK::Console::TextCanvas;
 #~ print (chr($_),"\n") for 179..218; exit;
 #~ print ($_, chr($_),"\n") for 179..218; exit;
 
@@ -56,9 +56,9 @@ for (1..50) {
     my $h = 1 + int rand 4;
     push @$boxes, [($x,$y), ($w,$h), "f"];
 }
-#~ my $canvas = new Console::TextCanvas(43, 4);
-#~ my $canvas = new Console::TextCanvas(80, 10);
-my $canvas = new Console::TextCanvas(80, 25);
+#~ my $canvas = new RJK::Console::TextCanvas(43, 4);
+#~ my $canvas = new RJK::Console::TextCanvas(80, 10);
+my $canvas = new RJK::Console::TextCanvas(80, 25);
 foreach my $box (@$boxes) {
     $canvas->box(@$box);
 }
