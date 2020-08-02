@@ -3,6 +3,7 @@ use warnings;
 
 # http://www.softpanorama.org/Scripting/Pythonorama/Python_for_perl_programmers/Pl2py_reference/pl2py_functions_map.shtml
 # https://wiki.python.org/moin/PerlPhrasebook
+# https://docs.python.org/3/library/tokenize.html
 # book: Perl To Python Migration
 
 use Perl::Tokenizer;
