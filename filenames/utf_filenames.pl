@@ -35,7 +35,8 @@ while (my $file = readdir $dh) {
         # https://en.wikipedia.org/wiki/ASCII
         # replace all but printable ascii chars
         my $clean = $long =~ s/[^\x20-\x7E]/_/gr;
-        push @files, "short: $path\nlong:  $long\nclean: $clean";
+        my $encoded = encode_utf8 $long;
+        push @files, "short: $path\nlong:  $long\nclean: $clean\nencdd: $encoded";
     } else {
         my $clean = $path;
         if ($clean =~ s/[^\x20-\x7E]/_/g) {
