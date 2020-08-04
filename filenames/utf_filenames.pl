@@ -7,14 +7,14 @@ use Encode qw(encode_utf8);
 # https://perldoc.perl.org/Win32.html
 use Win32;
 
-# Unicode
-#~ Win32::SetConsoleOutputCP(65001);
+# Unicode console
+Win32::SetConsoleOutputCP(65001);
 # or
 # https://metacpan.org/pod/Win32::Console
 #~ use Win32::Console;
 #~ Win32::Console::OutputCP(65001);
 
-# remove warning "Wide character in print"
+# disable warning "Wide character in print"
 binmode(STDOUT, ":utf8");
 
 # io functions return short names
