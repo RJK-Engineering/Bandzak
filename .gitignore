@@ -7,3 +7,6 @@ kiwi/test/
 *.class
 *~
 *~.*
+*.sublime-*
+*.*-project
+*.*-workspace
