@@ -5,3 +5,5 @@ doc/
 kiwi/src/nl/novadoc/
 kiwi/test/
 *.class
+*~
+*~.*
