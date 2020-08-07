@@ -48,8 +48,8 @@ while (my $file = readdir $dh) {
 }
 close $dh;
 
-print join("\n", @files), "\n";
+print join("\n\n", @files), "\n";
 
 open my $fh, ">:utf8", "test~" or die "$!";
-print $fh join("\n", @files), "\n";
+print $fh join("\n\n", @files), "\n";
 close $fh;
