@@ -42,12 +42,9 @@ sub new {
     $self->{width} = shift;
     $self->{height} = shift;
 
-    my %chars = getCodePage437();
-    #~ my %chars = getUnicode();
+    #~ my %chars = getCodePage437();
+    my %chars = getUnicode();
     getReplacements(\%chars);
-
-    #~ print join " ", sort {$a <=> $b} keys %chars; exit;
-    #~ print join " ", grep {not exists $chars{$_}} 0..ALL_BITS_SET; exit;
 
     $self->{map} = [ map { exists $chars{$_} ? chr $chars{$_} : "?" } 0..ALL_BITS_SET ];
     $self->{map}[0] = " ";
@@ -93,7 +90,6 @@ sub draw {
                 next;
             }
             $write->($self->getChar($x));
-            #~ $write->("$x ", $self->getChar($x), "\n") if $x;
         }
         $write->("\n");
     }
