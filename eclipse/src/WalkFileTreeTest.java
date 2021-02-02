@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
-public class WalkFileTree {
+public class WalkFileTreeTest {
 
 	public static void main(String[] args) throws Exception {
 		// Returns the default FileSystem. The default file system creates objects that provide access to the file systems accessible to the Java virtual machine. The working directory of the file system is the current user directory, named by the system property user.dir. This allows for interoperability with the java.io.File class.
@@ -16,7 +16,7 @@ public class WalkFileTree {
 		Path p = Paths.get(System.getProperty("user.dir"));
 		System.out.println(p.resolve(Paths.get(args[0])).normalize());
 		System.out.println(Paths.get(args[0]).normalize());
-		WalkFileTree.walk(args[0]);
+		WalkFileTreeTest.walk(args[0]);
 	}
 
 	public static void walk(String path) throws Exception {
