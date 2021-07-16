@@ -6,14 +6,24 @@ FOR /F "delims=/ tokens=1-3" %A IN ("a/b/c") DO echo %A %B %C
 Path components
 FOR /F "delims=" %F IN ("c:\temp") DO echo %~nxF
 
-Replace string
+Replace string - https://ss64.com/nt/syntax-replace.html
 %variable:StrToFind=NewStr%
 replace 1 with 2 in var a:
 set "a=%a:1=2%"
 
-Substring
+Substring - https://ss64.com/nt/syntax-substring.html
 %variable:~start_index%
 %variable:~start_index,end_index%
 (index can be negative)
 only keep first char in var a:
 set "a=%a:~0,1%"
+
+https://ss64.com/nt/set.html
+
+https://ss64.com/nt/setx.html
+Setting value of "" (empty quotes) will appear to delete the variable - it's not shown by SET but the variable name will remain in the registry.
+User Variables: HKEY_CURRENT_USER\Environment
+System Variables: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment
+
+https://ss64.com/nt/reg.html
+Deleting a variable with REG will not take effect until next logon due to caching of registry data.
