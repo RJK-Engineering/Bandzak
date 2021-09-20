@@ -10,3 +10,4 @@ kiwi/test/
 *.sublime-*
 *.*-project
 *.*-workspace
+*.ico
