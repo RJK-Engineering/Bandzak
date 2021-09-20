@@ -9,6 +9,7 @@ public class Path {
 		System.out.println(Paths.get("A:\\a..\\asdsad.\\..\\\\.\\file.txt."));
 		System.out.println(Paths.get("A:\\a..\\asdsad.\\..\\\\.\\file.txt.").normalize());
 		System.out.println(Paths.get("A:\\.").getFileName());
+		System.out.println(Paths.get("A:\\. \" asdf").getFileName());
 	}
 
 }
